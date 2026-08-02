@@ -1,4 +1,4 @@
-# 🪙 DAA Lab 01 
+
 _________________________________________
 Q2 Fair vs. Biased Coin Toss Simulation
 _________________________________________
@@ -6,12 +6,12 @@ _________________________________________
 
 ---
 
-## 📌 Overview
+##  Overview
 This repository contains the C programming implementation for the **Coin Toss Simulation** of our DAA Lab-01 assignment. 
 The objective is to computationally simulate a standard (fair) coin and a mathematically weighted (biased) coin over a massive sample size to observe probability in action.
 The program runs 10,000 independent trials, counting the occurrences of Heads and Tails, and outputs the final experimental probabilities directly to the console.
 
-## ⚙️ Algorithmic Logic
+## Algorithmic Logic
 
 The simulation relies on pseudo-random number generation (`rand()`) seeded by the current system time to model probability:
 
@@ -22,7 +22,7 @@ The simulation relies on pseudo-random number generation (`rand()`) seeded by th
 ## THE OUTPUT OF THIS PROGRAM IS GIVEN BELOW AND I HAVE ATTTACHED A SVG FILE TO SHOW THE SIMULATION FOR THE COMPARISON 
 
 
-### 🎲 Experimental Data Output
+###  Experimental Data Output
 
 | Coin Type | Theoretical Expectation (Heads) | Total Heads | Total Tails | Actual Experimental Probability |
 | :--- | :--- | :--- | :--- | :--- |
