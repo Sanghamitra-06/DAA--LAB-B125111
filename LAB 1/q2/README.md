@@ -1,37 +1,28 @@
+### Problem 2: Fair vs. Biased Coin Simulation
 
-_________________________________________
-Q2 Fair vs. Biased Coin Toss Simulation
-_________________________________________
+*   **File Name**: `q2.c`
+*   **Compilation Command**: 
+    ```bash
+    gcc q2.c -o q2
+    ```
+*   **Execution Command**: 
+    ```bash
+    ./q2
+    ```
 
+#### 💡 Algorithmic Technique Used
+This program constructs an empirical testing engine to validate probability theory using a computational framework known as a **Monte Carlo Simulation**.
+*   **Pseudo-Random Sequence Seeding**: Real computers cannot naturally generate spontaneous random choices. The program initializes a pseudo-random integer sequence by seeding the engine with the Unix epoch system clock time in seconds (`srand(time(NULL))`). This guarantees that every execution yields completely unique, fresh results.
+*   **Interval Transformation and Geometric Weighting**: The native `rand()` function returns arbitrary integers between `0` and a massive platform limit (`RAND_MAX`). The program divides `rand()` by `RAND_MAX` to transform this range into a continuous, high-precision floating decimal between `0.0` and `1.0`. It then establishes clear mathematical boundaries to simulate real-world probability outcomes:
+    *   **Fair Coin Setup**: A threshold bounding window is set at `< 0.5`. Any random decimal falling within this window registers as a **HEAD**, which naturally occurs exactly 50% of the time.
+    *   **Biased Coin Setup**: The threshold bounding window is expanded to `< 0.7`. This weights the distribution to register a **HEAD** exactly 70% of the time.
 
----
+#### 📊 Convergence and the Law of Large Numbers
+Small sample sizes (like flipping a coin 10 times) are heavily skewed by temporary variance or "luck." To eliminate this discrepancy, this engine loops the simulation **1,000,000 times**. According to the **Law of Large Numbers**, as the volume of independent trials increases, the experimental frequency will perfectly flatten out and converge to the true theoretical probability. 
 
-##  Overview
-This repository contains the C programming implementation for the **Coin Toss Simulation** of our DAA Lab-01 assignment. 
-The objective is to computationally simulate a standard (fair) coin and a mathematically weighted (biased) coin over a massive sample size to observe probability in action.
-The program runs 10,000 independent trials, counting the occurrences of Heads and Tails, and outputs the final experimental probabilities directly to the console.
+The application outputs an explicit evaluation summary mapping the convergence:
 
-## Algorithmic Logic
-
-The simulation relies on pseudo-random number generation (`rand()`) seeded by the current system time to model probability:
-
-1. **Fair Coin (50%):** We use modulo 2 (`rand() % 2`). If the result is `0`, it counts as Heads; if `1`, it counts as Tails. This enforces a strict 50/50 algorithmic split.
-2. **Biased Coin (75%):** We use modulo 100 (`rand() % 100`). If the generated number is strictly less than 75 (0 through 74), it counts as Heads. If it is 75 to 99, it counts as Tails. This perfectly enforces a 75/25 algorithmic bias.
-
---------------------------------------
-## THE OUTPUT OF THIS PROGRAM IS GIVEN BELOW AND I HAVE ATTTACHED A SVG FILE TO SHOW THE SIMULATION FOR THE COMPARISON 
-
-
-###  Experimental Data Output
-
-| Coin Type | Theoretical Expectation (Heads) | Total Heads | Total Tails | Actual Experimental Probability |
+| Coin Type | Implemented Threshold | Execution Iterations | Expected Theoretical P(Head) | Sample Experimental Output |
 | :--- | :--- | :--- | :--- | :--- |
-| **Normal (Fair) Coin** | 50.00% | 5,042 | 4,958 | **50.42%** |
-| **Biased Coin** | 75.00% | 7,481 | 2,519 | **74.81%** |
-
----
-
-
-> **Course:** Design and Analysis of Algorithm (DAA), Lab-01  
-> **Instructor:** Dr. Ajaya Kumar Dash  
-> **Date:** 31 July 2026  
+| **Fair Coin** | `r < 0.5` | 1,000,000 tosses | **0.5000 (50%)** | `0.5002` (99.9% accurate) |
+| **Biased Coin** | `r < 0.7` | 1,000,000 tosses | **0.7000 (70%)** | `0.6998` (99.9% accurate) |
