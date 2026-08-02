@@ -13,12 +13,21 @@ The Functions (From Slowest to Fastest Growing)
 Through asymptotic analysis (Big-O notation) and empirical data generation, the functions are ordered as follows:
 
 log2(n) (Logarithmic - Most Efficient)
+
 12√n & 50n^0.5 (Square Root / Tied)
+
 n^0.51 (Fractional Polynomial)
+
 2^32 * n (Linear - Massive constant, but scales linearly)
+
 n * log2(n) (Linearithmic)
+
 100n^2 + 6n & n^2 - 324 (Quadratic / Tied)
+
 2n^3 (Cubic)
+
 n^log2(n) (Quasi-polynomial)
+
 3^n (Exponential - Least Efficient)
+
 
