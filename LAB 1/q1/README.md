@@ -1,33 +1,17 @@
-📘 Detailed Problem Breakdown
+## Problem 1: Put Them in Order (Asymptotic Growth)
 
-Problem 1: 
+*   **File Name**: `q1.c`
+*   **Compilation Command**: 
+    ```bash
+    gcc q1.c -o q1 -lm
+    ```
+*   **Execution Command**: 
+    ```bash
+    ./q1
+    ```
 
-Put Them in Order (Asymptotic Growth)
-
-Core Technique: Structural Data Binding, Numerical Evaluation, and Quick Sort (qsort).
-
-Explanation: This program calculates the exact numerical values of 12 distinct mathematical functions at a controlled evaluation threshold (n = 1000). To handle massive values like 3¹⁰⁰⁰ without crashing the runtime environment, the code wraps parameters into high-precision double floating-point containers. It uses C’s native library qsort() combined with a custom safe-difference comparator callback (diff > 0) - (diff < 0) to securely sequence the functions in ascending order of their growth rate.
-
-The Functions (From Slowest to Fastest Growing)
-
-Through asymptotic analysis (Big-O notation) and empirical data generation, the functions are ordered as follows:
-
-log2(n) (Logarithmic - Most Efficient)
-
-12√n & 50n^0.5 (Square Root / Tied)
-
-n^0.51 (Fractional Polynomial)
-
-2^32 * n (Linear - Massive constant, but scales linearly)
-
-n * log2(n) (Linearithmic)
-
-100n^2 + 6n & n^2 - 324 (Quadratic / Tied)
-
-2n^3 (Cubic)
-
-n^log2(n) (Quasi-polynomial)
-
-3^n (Exponential - Least Efficient)
-
-
+#### 💡 Algorithmic Technique Used
+This program focuses on evaluating and sorting a set of 12 distinct mathematical functions according to their **asymptotic growth rates** (Big-O notation). 
+*   **High-Precision Numerical Profiling**: Functions like $3^n$ or $n^{\log_2 n}$ scale exponentially and easily overflow standard memory architectures. The code utilizes high-precision `double` floating-point containers to safely evaluate and handle massive limits up to roughly $1.7 \times 10^{308}$.
+*   **Structural Binding & Quick Sort (`qsort`)**: To automate ordering, each function's string formula is structurally tied to its calculated numerical value in a custom `Func` array. The complete set is then organized using C's native quicksort algorithm (`qsort()`).
+*   **Safe Comparison Hook**: The sort engine leverages a safe-difference comparison method, `(diff > 0) - (diff < 0)`. This pattern safely normalizes the `double` floating-point differences into exact integer return values (`-1`, `0`, or `1`), completely eliminating data truncation bugs.
